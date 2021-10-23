@@ -35,7 +35,7 @@ export const Timeline = () => {
         />
       </div>
       <div style={{ flex: "1 1 auto" }}>
-        <VerticalTimeline layout="2-columns">
+        <VerticalTimeline>
           {posts.map((post, index) => (
             <TimelineCard key={index} post={post} />
           ))}
