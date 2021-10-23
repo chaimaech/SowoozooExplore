@@ -13,7 +13,7 @@ export const Layout = ({ children }: React.PropsWithChildren<{}>): React.ReactEl
       <header style={{ flex: "0", background: "hsl(300deg 44% 33%)" }}>
         <Nav />
       </header>
-      <div style={{ flex: "1" }}>{children}</div>
+      <div style={{ flex: "1", background: "#BF7FBF" }}>{children}</div>
       <footer style={{ flex: "0", background: "hsl(300deg 44% 33%)" }}>Footer</footer>
     </div>
   );
