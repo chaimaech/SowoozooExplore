@@ -61,7 +61,7 @@ export const FilterButtons = ({
       </button>
       {categories &&
         categories.map((category) => (
-          <button disabled={disabled} onClick={() => onClick([category.id])}>
+          <button key={category.id} disabled={disabled} onClick={() => onClick([category.id])}>
             {category.name}
           </button>
         ))}

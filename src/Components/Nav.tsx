@@ -18,7 +18,7 @@ export const Nav = (): React.ReactElement => {
   return (
     <div style={{ display: "flex" }}>
       {links.map((link) => (
-        <Link style={linkStyle} to={link.route}>
+        <Link key={link.route} style={linkStyle} to={link.route}>
           {link.title}
         </Link>
       ))}
