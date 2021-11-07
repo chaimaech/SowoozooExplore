@@ -2,11 +2,12 @@ import React from "react";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { Category, useCategoryContext } from "../Providers/CategoryProvider";
+import { usePostContext } from "../Providers/PostProvider";
 import { WP_API_Post } from "../Services/Acf.types";
-import { useWpPostService } from "../Services/useWpPostService";
 
 export const Timeline = () => {
-  const { posts, loading, error, refresh } = useWpPostService();
+  const { posts, loading, error, refresh } = usePostContext();
+
   const { categories } = useCategoryContext();
   const buttonsDisabled = loading;
 
@@ -17,6 +18,11 @@ export const Timeline = () => {
   if (error) {
     <div>Error: {error}</div>;
   }
+
+  // TODO actually filter lol
+  const filterByCategory = (categories: number[]): void => {
+    refresh(categories);
+  };
 
   return (
     <div style={{ display: "flex", flexFlow: "column", height: "100%" }}>
@@ -31,14 +37,13 @@ export const Timeline = () => {
         <FilterButtons
           categories={categories}
           disabled={buttonsDisabled}
-          onClick={(categories) => refresh(categories)}
+          onClick={filterByCategory}
         />
       </div>
       <div style={{ flex: "1 1 auto" }}>
         <VerticalTimeline>
-          {posts.map((post, index) => (
-            <TimelineCard key={index} post={post} />
-          ))}
+          {posts.length > 0 && posts.map((post, index) => <TimelineCard key={index} post={post} />)}
+          {posts.length <= 0 && <>No results for this category :D</>}
         </VerticalTimeline>
       </div>
     </div>
